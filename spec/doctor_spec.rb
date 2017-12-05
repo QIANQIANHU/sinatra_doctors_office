@@ -4,7 +4,7 @@ require('doctor')
 # require('patient')
 # require('spec_helper')
 
-DB = PG.connect({:dbname => 'test_doctors_office'})
+DB = PG.connect({:dbname => 'doctors_office_test'})
 
 RSpec.configure do |config|
   config.after(:each) do
@@ -32,5 +32,13 @@ end
       doctors_list = Doctor.new({:name => "Pamela Frost",:speciality => "family doctor", :id => nil})
       doctors_list.save()
       expect(doctors_list.id()).to(be_an_instance_of(Fixnum))
+    end
+  end
+
+  describe("#save") do
+    it("lets you save doctors list to the database") do
+      doctors_list = Doctor.new({:name => "Pamela Frost",:speciality => "family doctor", :id => nil})
+      doctors_list.save()
+      expect(Doctor.all()).to(eq([doctors_list]))
     end
   end
