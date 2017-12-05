@@ -42,3 +42,21 @@ end
       expect(Doctor.all()).to(eq([doctors_list]))
     end
   end
+
+  describe("#==") do
+    it("is the same list if it has the same name") do
+      doctors_list1 = Doctor.new({:name => "Pamela Frost",:speciality => "family doctor", :id => nil})
+      doctors_list2 = Doctor.new({:name => "Pamela Frost",:speciality => "family doctor", :id => nil})
+      expect(doctors_list1).to(eq(doctors_list2))
+    end
+  end
+
+  describe(".find") do
+    it("returns a doctor by its ID") do
+      doctors_list1 = Doctor.new({:name => "Pamela Frost",:speciality => "family doctor", :id => nil})
+      doctors_list1.save()
+      doctors_list2 = Doctor.new({:name => "Kevin Babcock",:speciality => "dentist", :id => nil})
+      doctors_list2.save()
+      expect(Doctor.find(doctors_list2.id())).to(eq(doctors_list2))
+    end
+  end

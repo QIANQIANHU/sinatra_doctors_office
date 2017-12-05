@@ -27,4 +27,14 @@ class Doctor
   def ==(another_list)
     self.name().==(another_list.name()).&(self.id().==(another_list.id())).&(self.speciality().==(another_list.speciality()))
   end
+
+  def self.find(id)
+    found_list = nil
+    Doctor.all().each() do |doctor|
+      if doctor.id().==(id)
+        found_list = doctor
+      end
+    end
+    found_list
+  end
 end
