@@ -1,5 +1,1 @@
-require('rspec')
-require('pg')
-require('doctor')
-require('patient')
-require('spec_helper')
+

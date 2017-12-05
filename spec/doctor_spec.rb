@@ -19,3 +19,18 @@ describe(Doctor) do
     end
   end
 end
+
+  describe("#name") do
+     it("tells you each doctors name") do
+       doctors_list = Doctor.new({:name => "Pamela Frost",:speciality => "family doctor", :id => nil})
+       expect(doctors_list.name()).to(eq("Pamela Frost"))
+    end
+  end
+
+  describe("#id") do
+    it("sets its ID when you save it") do
+      doctors_list = Doctor.new({:name => "Pamela Frost",:speciality => "family doctor", :id => nil})
+      doctors_list.save()
+      expect(doctors_list.id()).to(be_an_instance_of(Fixnum))
+    end
+  end
