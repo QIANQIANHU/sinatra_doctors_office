@@ -35,41 +35,32 @@ describe('adding patient to list', {:type => :feature}) do
     fill_in('name', with: 'Malgorzata Haniszewska')
     fill_in('birthdate', with: '2017-07-23 00:00:00')
     fill_in('doctor_id', with: 1)
+    # save_and_open_page
     click_button('Add to List')
     expect(page).to have_content('Add Patient')
   end
 end
 
-# describe('viewing all of the lists', {:type => :feature}) do
-#   it('allows a user to see all of the lists that have been created') do
-#     list = List.new({:name => 'Epicodus Homework', :id => nil})
-#     list.save()
-#     visit('/')
-#     click_link('View All Lists')
-#     expect(page).to have_content(list.name)
-#   end
-# end
-#
-# describe('seeing details for a single list', {:type => :feature}) do
-#   it('allows a user to click a list to see the tasks and details for it') do
-#     test_list = List.new({:name => 'School stuff', :id => nil})
-#     test_list.save()
-#     test_task = Task.new({:description => "learn SQL", :list_id =>
-#     test_list.id()})
-#     test_task.save()
-#     visit('/lists')
-#     click_link(test_list.name())
-#     expect(page).to have_content(test_task.description())
-#   end
-# end
-#
-# describe('adding tasks to a list', {:type => :feature}) do
-#   it('allows a user to add a task to a list') do
-#     test_list = List.new({:name => 'School stuff', :id => nil})
-#     test_list.save()
-#     visit("/lists/#{test_list.id()}")
-#     fill_in("Description", {:with => "Learn SQL"})
-#     click_button("Add task")
-#     expect(page).to have_content("Success")
-#   end
-# end
+describe('viewing all of the doctors', {:type => :feature}) do
+  it('allows a user to see all of the doctors that have been created') do
+    doctors = Doctor.new({:name => "Pamela Frost",:speciality => "family doctor", :id => nil})
+    doctors.save()
+    visit('/')
+    click_link('Click here if you are a Doctor')
+    expect(page).to have_content(doctors.name)
+  end
+end
+
+describe('seeing details for a single doctor', {:type => :feature}) do
+  it('allows a user to click on a doctor to see the patients for him or her') do
+    test_doctor = Doctor.new({:name => "Pamela Frost",:speciality => "family doctor", :id => nil})
+    test_doctor.save()
+    test_patient = Patient.new({:name => "Malgorzata Haniszewska",:birthdate => "2017-07-23", :doctor_id => test_doctor.id})
+    test_patient.save()
+    visit('/doctors_list')
+
+    click_link(test_doctor.name())
+    save_and_open_page
+    expect(page).to have_content(test_patient.name())
+  end
+end
