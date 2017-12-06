@@ -14,13 +14,13 @@ class Patient
       name = patient.fetch("name")
       birthdate = patient.fetch("birthdate")
       doctor_id = patient.fetch("doctor_id").to_i() # The information comes out of the database as a string.
-      patients.push(Patient.new({:name => name,:birthdate => birthdate, :doctor_id => doctor_id}))
+      patients.push(Patient.new({:name => name, :birthdate => birthdate, :doctor_id => doctor_id}))
     end
     patients
   end
 
   def save
-    DB.exec("INSERT INTO patients (name,birthdate, doctor_id) VALUES ('#{@name}','#{@birthdate}', #{@doctor_id});")
+    DB.exec("INSERT INTO patients (name, birthdate, doctor_id) VALUES ('#{@name}', '#{@birthdate}', '#{@doctor_id}');")
   end
 
   def ==(another_list)

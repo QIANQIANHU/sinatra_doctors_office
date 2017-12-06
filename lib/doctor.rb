@@ -14,7 +14,7 @@ class Doctor
       name = doctor.fetch("name")
       speciality = doctor.fetch("speciality")
       id = doctor.fetch("id").to_i()
-      doctors.push(Doctor.new({:name => name,:speciality => speciality, :id => id}))
+      doctors.push(Doctor.new({:name => name, :speciality => speciality, :id => id}))
     end
     doctors
   end
