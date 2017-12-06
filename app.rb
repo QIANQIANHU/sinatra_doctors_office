@@ -5,7 +5,7 @@ require('./lib/patient')
 also_reload('lib/**/*.rb')
 require("pg")
 
-DB = PG.connect({:dbname => "doctors_office"})
+DB = PG.connect({:dbname => "doctors_office_test"})
 
 
 get("/") do
