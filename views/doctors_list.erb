@@ -1,0 +1,16 @@
+<h1>The List of Doctors</h1>
+
+<% if @doctors.any?() %>
+  <h3>Here are list of doctors:</h3>
+
+  <ul>
+    <% @doctors.each() do |doctor| %>
+      <li><a href="/doctor/<%= doctor.id()%>"><%= doctor.name() %></a> </li>
+    <% end %>
+  </ul>
+
+<% else %>
+
+    <p>There are no doctors yet!</p>
+
+<% end %>
